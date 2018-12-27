@@ -1,4 +1,4 @@
-# robosys
+# robosys homework1
 
 LEDを点灯させるデバイスドライバです。  
 https://github.com/ryuichiueda/robosys2018/blob/master/06.md を参考にしています。
