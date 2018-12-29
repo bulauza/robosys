@@ -36,7 +36,6 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 {
 	char c;
 	int i;
-	int second = 100;
 	unsigned int time = 0;
 	unsigned int default_time = 2000;
 
@@ -52,6 +51,13 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 		gpio_base[7] = 1 << 25;
 	}
 	else if(c == '2'){
+		// gradually turn on
+		gpio_base[10] = 1 << 25;
+		delay(5)
+		gpio_base[7] = 1 << 25;
+		//gpio_base[7] = 1 << 25;
+	}
+	else if(c == '3'){
 		// gradually turn on
 		for(time = 0; time < default_time; time++){
 			gpio_base[10] = 1 << 25;
