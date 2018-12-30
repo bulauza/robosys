@@ -1,6 +1,6 @@
-obj_m:= myled.o
+obj-m := myled.o
 
-myled.ko: myled.c
-	make -C /usr/src/linux M='pwd' V=1 modules
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) modules
 clean:
-	make -C /usr/src/linux M='pwd' V=1 clean
+	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) clean

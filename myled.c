@@ -1,17 +1,3 @@
-Copyright (c) 2018 Masaharu Takahashi
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>
@@ -22,7 +8,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <asm/delay.h>
 
 MODULE_AUTHOR("Ryuichi Ueda");
-MODULE_EDITER("Masaharu Takahashi");
+//MODULE_EDITOR("Masaharu Takahashi");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
@@ -30,45 +16,42 @@ MODULE_VERSION("0.1");
 static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
+
 static volatile u32 *gpio_base = NULL;
 
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c;
-	int i;
-	unsigned int time = 0;
-	unsigned int default_time = 2000;
+	unsigned int time =0;
+	unsigned int def_time = 2000;
 
 	if(copy_from_user(&c,buf,sizeof(char)))
 		return -EFAULT;
 
 	if(c == '0'){
-		// turn off
-		gpio_base[10] = 1 << 25;
+		gpio_base[10] = 1 <<25;
 	}
 	else if(c == '1'){
-		// turn on
 		gpio_base[7] = 1 << 25;
 	}
 	else if(c == '2'){
-		// gradually turn on
-		gpio_base[10] = 1 << 25;
-		delay(5)
-		gpio_base[7] = 1 << 25;
-		//gpio_base[7] = 1 << 25;
-	}
-	else if(c == '3'){
-		// gradually turn on
-		for(time = 0; time < default_time; time++){
+		for(time = 0; time < def_time; time++){
 			gpio_base[10] = 1 << 25;
-			udelay(default_time - time);
+			udelay(def_time - time);
 			gpio_base[7] = 1 << 25;
 			udelay(time);
 		}
-		//gpio_base[7] = 1 << 25;
+	}
+	else if(c == '3'){
+		for(time = 0; time < def_time; time++){
+			gpio_base[7] = 1 << 25;
+			udelay(def_time - time);
+			gpio_base[10] = 1 << 25;
+			udelay(time);
+		}
 	}
 
-        return 1;
+	return 1;
 }
 
 static struct file_operations led_fops = {
@@ -80,16 +63,16 @@ static int __init init_mod(void)
 {
 	int retval;
 
-	gpio_base = ioremap_nocache(0x3f200000, 0xA0); //0x3f..:base address, 0xA0: region to map
-
-	const u32 led = 25;
-	const u32 index = led/10;//GPFSEL2
-	const u32 shift = (led%10)*3;//15bit
-	const u32 mask = ~(0x7 << shift);//11111111111111000111111111111111
-	gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);//001: output flag
-	//11111111111111001111111111111111
+	gpio_base = ioremap_nocache(0x3f200000, 0xA0); //0xA0: region to map
 	
-	retval =  alloc_chrdev_region(&dev, 0, 1, "myled");
+	const u32 led = 25;
+	const u32 index = led/10; //GPFSEL2
+	const u32 shift = (led%10)*3; //15bit
+	const u32 mask = ~(0x7 << shift);
+	gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
+
+	retval = alloc_chrdev_region(&dev, 0, 1, "myled");
+
 	if(retval < 0){
 		printk(KERN_ERR "alloc_chrdev_region failed.\n");
 		return retval;
@@ -104,7 +87,7 @@ static int __init init_mod(void)
 		return retval;
 	}
 
-	cls = class_create(THIS_MODULE,"myled");
+	cls = class_create(THIS_MODULE, "myled");
 	if(IS_ERR(cls)){
 		printk(KERN_ERR "class_create failed.");
 		return PTR_ERR(cls);
