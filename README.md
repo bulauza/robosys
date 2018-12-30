@@ -8,7 +8,7 @@ RoboSys homework1
 ## 環境構築
 ```
 $ git clone https://github.com/bulauza/robosys.git
-$ cd robosys
+$ cd robosys/
 $ make
 $ sudo insmod myled.ko
 $ sudo chmod 666 /dev/myled0
@@ -31,8 +31,9 @@ $ make clean
 ```
 
 ## 動画
-
+https://m.youtube.com/watch?v=O8pU3PIYhxY
 
 ## 参考にしたサイト
-https://github.com/ryuichiueda/robosys2018/blob/master/06.md  
+https://github.com/ryuichiueda/robosys2018/blob/master/06.md
+https://qiita.com/take-iwiw/items/1fdd2e0faaaa868a2db2
 https://prev.net-newbie.com/linux/driver/driver2.html
