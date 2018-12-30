@@ -32,7 +32,7 @@ $ make clean
 ```
 
 ## 動画
-https://m.youtube.com/watch?v=O8pU3PIYhxY
+https://m.youtube.com/watch?v=eryEZQW-6hU
 
 ## 参考にしたサイト
 https://github.com/ryuichiueda/robosys2018/blob/master/06.md
