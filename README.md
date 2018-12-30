@@ -35,6 +35,6 @@ $ make clean
 https://m.youtube.com/watch?v=eryEZQW-6hU
 
 ## 参考にしたサイト
-https://github.com/ryuichiueda/robosys2018/blob/master/06.md
-https://qiita.com/take-iwiw/items/1fdd2e0faaaa868a2db2
-https://prev.net-newbie.com/linux/driver/driver2.html
+https://github.com/ryuichiueda/robosys2018/blob/master/06.md  
+make関連: https://qiita.com/take-iwiw/items/1fdd2e0faaaa868a2db2  
+フェードイン機能: https://prev.net-newbie.com/linux/driver/driver2.html
