@@ -7,12 +7,22 @@ RoboSys homework1
 
 ## 環境構築
 ```
-$ 
+$ git clone https://github.com/bulauza/robosys.git
+$ cd robosys
+$ make
+$ sudo insmod myled.ko
+$ sudo chmod 666 /dev/myled0
 ```
 
 ## 実行方法
 * LED点灯
   * `$ echo 1 > /dev/myled0`
+* LED消灯
+  * `$ echo 0 > /dev/myled0`
+* LEDフェードイン
+  * `$ echo 2 > /dev/myled0`
+* LEDフェードアウト
+  * `$ echo 3 > /dev/myled0`
 
 ## 後始末
 ```
