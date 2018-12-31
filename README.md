@@ -10,9 +10,9 @@ RoboSys homework1
 Raspberry pi3  
 OS: Raspbian (ubuntu16.04.5 LTS)  
 カーネル再構築はしてあることが前提    
-ubuntu の場合, 環境構築の前に以下のコマンドを実行    
-* `$ sudo apt install linux-headers-$(uname -r)`  
-* ubuntu_Makefile を使用してmakeすること  
+* ubuntu の場合, 環境構築の前に以下のコマンドを実行    
+** `$ sudo apt install linux-headers-$(uname -r)`  
+** ubuntu_Makefile を使用してmakeすること  
 
 ## 環境構築
 ```
