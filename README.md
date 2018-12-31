@@ -8,8 +8,8 @@ RoboSys homework1
 * ubuntu の場合はubuntu_Makefile を使用してmakeすること
 
 ## 使用環境
-Raspberry pi3
-OS: Raspbian
+Raspberry pi3  
+OS: Raspbian  
 カーネル再構築はしてあることが前提
 
 ## 環境構築
