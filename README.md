@@ -5,6 +5,12 @@ RoboSys homework1
 * LEDを点灯させるデバイスドライバです。  
 * /dev/myled0に1を書き込むとLEDが光り0を書き込むとLEDが消灯します。
 * old_Makefile を使用してmakeすることも可能
+* ubuntu の場合はubuntu_Makefile を使用してmakeすること
+
+## 使用環境
+Raspberry pi3
+OS: Raspbian
+カーネル再構築はしてあることが前提
 
 ## 環境構築
 ```
