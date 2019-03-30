@@ -21,8 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <linux/uaccess.h>
 #include <asm/delay.h>
 
-MODULE_AUTHOR("Ryuichi Ueda");
-//MODULE_EDITOR("Masaharu Takahashi");
+MODULE_AUTHOR("Masaharu TAKAHASHI");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
